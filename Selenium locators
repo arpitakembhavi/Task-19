@@ -1,0 +1,86 @@
+1.Id(String id)
+If an element has a unique ID, you can use it as a locator. 
+For example:
+ID:
+Registration button: #registerButton
+
+2.className(String classname)
+If an element has a specific class, you can use it as a locator. 
+For example:
+.element_class
+Input field for username: .username-input
+
+3.tagName(String tagname)->
+If you want to select all elements of a specific tag type, you can use the tag name as a locator. 
+For example:
+tagname (replace "tagname" with the actual tag name, like div, input, etc.)
+TagName:
+All buttons on the page: button
+
+4.cssSelector(String cssselector)
+CSS selectors provide a powerful way to select elements. For example:
+tagname#element_id
+tagname.element_class
+syntax: tagname[atrributename="value"]
+input[placeholder="username"]
+input[name="username"]
+Css Selector:
+input#name
+#name
+
+5.xpath(String):
+XPath is another powerful locator strategy. For example:
+//tagname[@id='element_id']
+//tagname[@class='element_class']
+syntax:
+//tagname[@attribute="value"]
+3-selectors 
+//input[@type="password"]
+//input[@name="password"]
+//input[@placeholder='password']
+
+Here is example program:
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class DemoActionClass {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		
+		WebDriver driver=new ChromeDriver();
+
+		//maximize window
+		driver.manage().window().maximize();
+		//delete cookies
+		driver.manage().deleteAllCookies();
+		
+//		driver.get("https://www.guvi.in/");
+		driver.get("https://www.amazon.com/");
+
+	
+//		WebElement loginfield=driver.findElement(By.linkText("Login"));
+		
+		//create an object of Actions class
+		
+//        Actions actions=new Actions(driver);
+//        actions.click(loginfield).build().perform();
+//        Thread.sleep(5000);
+		
+		
+		//locate an element
+		WebElement hoversignelement=driver.findElement(By.id("nav-link-accountList"));
+		Actions actions=new Actions(driver);
+		
+		actions.moveToElement(hoversignelement).build().perform();
+        Thread.sleep(2000);
+//        driver.close();
+	}
+
+}
